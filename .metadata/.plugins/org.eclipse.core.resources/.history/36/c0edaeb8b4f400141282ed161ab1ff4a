@@ -1,0 +1,39 @@
+package bridge.console;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class ConsoleDeck 
+{
+    ArrayList<ConsoleCard> deck = new ArrayList<>();
+
+    public ConsoleDeck() 
+    {
+        for (int i = 0; i <= 3; i++) 
+        {
+            for (int j = 2; j <= 14; j++) 
+            {
+                deck.add(new ConsoleCard(j, i));
+            }
+        }
+        Collections.shuffle(deck);
+    }
+
+    public ConsoleCard dealCard() 
+    {
+    	ConsoleCard card = null;
+        if (deck.size() > 0) 
+        {
+            card = deck.remove(deck.size() - 1);
+        }
+        return card;
+    }
+    
+    public void addCard(ConsoleCard card) 
+    {
+        if (deck.size() <= 51) 
+        {
+            deck.add(card);
+        }
+    }
+}

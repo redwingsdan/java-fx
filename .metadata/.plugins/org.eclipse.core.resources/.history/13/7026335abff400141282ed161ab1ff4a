@@ -1,0 +1,96 @@
+package bridge.console;
+//2-10-numbers, j-11, q-12, k-13, a-14
+//heart-0, club-1, diamond-2, spade-3
+public class ConsoleCard implements Comparable<Object>
+{
+	int rank; 
+    int suit; 
+   
+    public ConsoleCard(int rank, int suit) 
+    {
+    	this.suit = suit;
+        this.rank = rank;
+    }
+
+    public int getSuit() 
+    {
+        return suit;
+    }
+    
+    public int getRank() 
+    {
+        return rank;
+    }
+    
+    public String getSuitString() 
+    {
+        String suit1 = null;
+        switch(suit)
+        {
+            case 0: 
+            	suit1 = "Hearts";
+                break;
+                
+            case 1: 
+            	suit1 = "Clubs";
+                break;
+                
+            case 2:
+            	suit1 = "Diamonds";
+                break;
+                
+            case 3:
+            	suit1 = "Spades";
+                break;
+                
+            default:
+                System.out.print("ERROR, NO SUIT!");
+                break;
+        }
+        return suit1;
+    }
+    
+    public boolean compareTo(int firstSuit, ConsoleCard c2) 
+    {
+        return suit == firstSuit && rank > c2.rank;
+    }
+
+    @Override
+    public String toString() 
+    {
+    	switch(rank)
+    	{
+    	case 11:
+    		return "Jack" + " of " + getSuitString() + ", ";
+    	case 12:
+    		return "Queen" + " of " + getSuitString() + ", ";
+    	case 13:
+    		return "King" + " of " + getSuitString() + ", ";
+    	case 14:
+    		return "Ace" + " of " + getSuitString() + ", ";
+    	default:
+    		return rank + " of " + getSuitString() + ", ";	
+    	}
+   //     return rank + " of " + getSuitString() + ", ";
+    }
+    
+    @Override
+    public int compareTo(Object obj) 
+    {
+        ConsoleCard c2 = (ConsoleCard) obj;
+        if (suit != c2.suit) 
+        {
+            return -1;
+        }
+
+        if ((suit > c2.suit) && (rank > c2.rank))
+        {
+            return 1;
+        }
+        if ((suit > c2.suit) && (rank < c2.rank)) 
+        {
+            return -1;
+        }
+        return 0;
+    }
+}
